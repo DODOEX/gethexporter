@@ -65,7 +65,7 @@ func main() {
 	if len(taskPrefix) == 0 {
 		taskPrefix = "geth-node"	
 	}
-	
+
 	delay, _ = strconv.Atoi(os.Getenv("DELAY"))
 	if delay == 0 {
 		delay = 500
@@ -199,8 +199,8 @@ func MetricsHttp(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, v := range addresses {
-		allOut = append(allOut, fmt.Sprintf("%v_eth_address_balance{address=\"%v\"} %v",taskPrefix,, v.Address, ToEther(v.Balance).String()))
-		allOut = append(allOut, fmt.Sprintf("%v_eth_address_nonce{address=\"%v\"} %v",taskPrefix,, v.Address, v.Nonce))
+		allOut = append(allOut, fmt.Sprintf("%v_eth_address_balance{address=\"%v\"} %v",taskPrefix, v.Address, ToEther(v.Balance).String()))
+		allOut = append(allOut, fmt.Sprintf("%v_eth_address_nonce{address=\"%v\"} %v",taskPrefix, v.Address, v.Nonce))
 	}
 
 	w.Write([]byte(strings.Join(allOut, "\n")))
