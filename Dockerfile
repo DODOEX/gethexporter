@@ -1,6 +1,6 @@
 FROM golang:1.11-alpine as base
 RUN apk add --no-cache libstdc++ gcc g++ make git ca-certificates linux-headers
-WORKDIR /go/src/github.com/hunterlong/gethexporter
+WORKDIR /go/src/github.com/dodoex/gethexporter
 ADD . .
 RUN go get && go install
 
