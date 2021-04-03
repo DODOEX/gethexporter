@@ -22,6 +22,7 @@ var (
 	geth              *GethInfo
 	delay             int
 	watchingAddresses string
+	taskPrefix				string
 	addresses         map[string]Address
 )
 
@@ -59,6 +60,12 @@ func main() {
 	defer eth.Close()
 	geth.GethServer = os.Getenv("GETH")
 	watchingAddresses = os.Getenv("ADDRESSES")
+	
+	taskPrefix = os.Getenv("PREFIX")
+	if len(taskPrefix) == 0 {
+		taskPrefix = "geth-node"	
+	}
+	
 	delay, _ = strconv.Atoi(os.Getenv("DELAY"))
 	if delay == 0 {
 		delay = 500
@@ -121,7 +128,7 @@ func Routine() {
 		var err error
 		geth.CurrentBlock, err = eth.BlockByNumber(ctx, nil)
 		if err != nil {
-			log.Printf("issue with reponse from geth server: %v\n", geth.CurrentBlock)
+			log.Printf("issue with response from geth server: %v\n", geth.CurrentBlock)
 			time.Sleep(time.Duration(delay) * time.Millisecond)
 			continue
 		}
@@ -167,33 +174,33 @@ func MetricsHttp(w http.ResponseWriter, r *http.Request) {
 	}
 	CalculateTotals(block)
 
-	allOut = append(allOut, fmt.Sprintf("geth_block %v", block.NumberU64()))
-	allOut = append(allOut, fmt.Sprintf("geth_seconds_last_block %0.2f", time.Now().Sub(geth.LastBlockUpdate).Seconds()))
-	allOut = append(allOut, fmt.Sprintf("geth_block_transactions %v", len(block.Transactions())))
-	allOut = append(allOut, fmt.Sprintf("geth_block_value %v", ToEther(geth.TotalEth)))
-	allOut = append(allOut, fmt.Sprintf("geth_block_gas_used %v", block.GasUsed()))
-	allOut = append(allOut, fmt.Sprintf("geth_block_gas_limit %v", block.GasLimit()))
-	allOut = append(allOut, fmt.Sprintf("geth_block_nonce %v", block.Nonce()))
-	allOut = append(allOut, fmt.Sprintf("geth_block_difficulty %v", block.Difficulty()))
-	allOut = append(allOut, fmt.Sprintf("geth_block_uncles %v", len(block.Uncles())))
-	allOut = append(allOut, fmt.Sprintf("geth_block_size_bytes %v", geth.BlockSize))
-	allOut = append(allOut, fmt.Sprintf("geth_gas_price %v", geth.SugGasPrice))
-	allOut = append(allOut, fmt.Sprintf("geth_pending_transactions %v", geth.PendingTx))
-	allOut = append(allOut, fmt.Sprintf("geth_network_id %v", geth.NetworkId))
-	allOut = append(allOut, fmt.Sprintf("geth_contracts_created %v", geth.ContractsCreated))
-	allOut = append(allOut, fmt.Sprintf("geth_token_transfers %v", geth.TokenTransfers))
-	allOut = append(allOut, fmt.Sprintf("geth_eth_transfers %v", geth.EthTransfers))
-	allOut = append(allOut, fmt.Sprintf("geth_load_time %0.4f", geth.LoadTime))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_block %v",taskPrefix, block.NumberU64()))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_seconds_last_block %0.2f",taskPrefix, time.Now().Sub(geth.LastBlockUpdate).Seconds()))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_block_transactions %v",taskPrefix, len(block.Transactions())))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_block_value %v",taskPrefix, ToEther(geth.TotalEth)))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_block_gas_used %v",taskPrefix, block.GasUsed()))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_block_gas_limit %v",taskPrefix, block.GasLimit()))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_block_nonce %v",taskPrefix, block.Nonce()))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_block_difficulty %v",taskPrefix, block.Difficulty()))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_block_uncles %v",taskPrefix, len(block.Uncles())))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_block_size_bytes %v",taskPrefix, geth.BlockSize))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_gas_price %v",taskPrefix, geth.SugGasPrice))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_pending_transactions %v",taskPrefix, geth.PendingTx))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_network_id %v",taskPrefix, geth.NetworkId))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_contracts_created %v",taskPrefix, geth.ContractsCreated))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_token_transfers %v",taskPrefix, geth.TokenTransfers))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_eth_transfers %v",taskPrefix, geth.EthTransfers))
+	allOut = append(allOut, fmt.Sprintf("%v_eth_load_time %0.4f",taskPrefix, geth.LoadTime))
 
 	if geth.Sync != nil {
-		allOut = append(allOut, fmt.Sprintf("geth_known_states %v", int(geth.Sync.KnownStates)))
-		allOut = append(allOut, fmt.Sprintf("geth_highest_block %v", int(geth.Sync.HighestBlock)))
-		allOut = append(allOut, fmt.Sprintf("geth_pulled_states %v", int(geth.Sync.PulledStates)))
+		allOut = append(allOut, fmt.Sprintf("%v_eth_known_states %v",taskPrefix, int(geth.Sync.KnownStates)))
+		allOut = append(allOut, fmt.Sprintf("%v_eth_highest_block %v",taskPrefix, int(geth.Sync.HighestBlock)))
+		allOut = append(allOut, fmt.Sprintf("%v_eth_pulled_states %v",taskPrefix, int(geth.Sync.PulledStates)))
 	}
 
 	for _, v := range addresses {
-		allOut = append(allOut, fmt.Sprintf("geth_address_balance{address=\"%v\"} %v", v.Address, ToEther(v.Balance).String()))
-		allOut = append(allOut, fmt.Sprintf("geth_address_nonce{address=\"%v\"} %v", v.Address, v.Nonce))
+		allOut = append(allOut, fmt.Sprintf("%v_eth_address_balance{address=\"%v\"} %v",taskPrefix,, v.Address, ToEther(v.Balance).String()))
+		allOut = append(allOut, fmt.Sprintf("%v_eth_address_nonce{address=\"%v\"} %v",taskPrefix,, v.Address, v.Nonce))
 	}
 
 	w.Write([]byte(strings.Join(allOut, "\n")))

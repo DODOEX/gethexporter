@@ -68,11 +68,7 @@
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": true,
-      "colors": [
-        "#299c46",
-        "rgb(255, 255, 255)",
-        "#d44a3a"
-      ],
+      "colors": ["#299c46", "rgb(255, 255, 255)", "#d44a3a"],
       "format": "locale",
       "gauge": {
         "maxValue": 100,
@@ -124,7 +120,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_block",
+          "expr": "geth-node_block",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -183,7 +179,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_block_transactions",
+          "expr": "geth-node_block_transactions",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -272,7 +268,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_eth_transfers",
+          "expr": "geth-node_eth_transfers",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -281,7 +277,7 @@
           "refId": "A"
         },
         {
-          "expr": "geth_token_transfers",
+          "expr": "geth-node_token_transfers",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "Tokens",
@@ -333,11 +329,7 @@
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": true,
-      "colors": [
-        "#299c46",
-        "rgb(73, 204, 39)",
-        "#d44a3a"
-      ],
+      "colors": ["#299c46", "rgb(73, 204, 39)", "#d44a3a"],
       "decimals": 2,
       "format": "locale",
       "gauge": {
@@ -390,7 +382,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_block_value",
+          "expr": "geth-node_block_value",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -415,11 +407,7 @@
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
+      "colors": ["#299c46", "rgba(237, 129, 40, 0.89)", "#d44a3a"],
       "format": "s",
       "gauge": {
         "maxValue": 120,
@@ -471,7 +459,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_seconds_last_block",
+          "expr": "geth-node_seconds_last_block",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -532,7 +520,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_eth_transfers",
+          "expr": "geth-node_eth_transfers",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "ETH Transfers",
@@ -584,11 +572,7 @@
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": true,
-      "colors": [
-        "#299c46",
-        "#64b0c8",
-        "#d44a3a"
-      ],
+      "colors": ["#299c46", "#64b0c8", "#d44a3a"],
       "format": "locale",
       "gauge": {
         "maxValue": 100,
@@ -640,7 +624,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_eth_transfers",
+          "expr": "geth-node_eth_transfers",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -665,11 +649,7 @@
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": true,
-      "colors": [
-        "#299c46",
-        "#64b0c8",
-        "#d44a3a"
-      ],
+      "colors": ["#299c46", "#64b0c8", "#d44a3a"],
       "format": "locale",
       "gauge": {
         "maxValue": 100,
@@ -721,7 +701,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_token_transfers",
+          "expr": "geth-node_token_transfers",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -746,11 +726,7 @@
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": true,
-      "colors": [
-        "#299c46",
-        "#64b0c8",
-        "#d44a3a"
-      ],
+      "colors": ["#299c46", "#64b0c8", "#d44a3a"],
       "format": "locale",
       "gauge": {
         "maxValue": 100,
@@ -802,7 +778,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_pending_transactions",
+          "expr": "geth-node_pending_transactions",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -861,7 +837,7 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "geth_block_size_bytes",
+          "expr": "geth-node_block_size_bytes",
           "format": "time_series",
           "intervalFactor": 3,
           "legendFormat": "Token Transfers",
@@ -948,7 +924,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_gas_price / 1000000000",
+          "expr": "geth-node_gas_price / 1000000000",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1002,11 +978,7 @@
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": true,
-      "colors": [
-        "#299c46",
-        "#c15c17",
-        "#d44a3a"
-      ],
+      "colors": ["#299c46", "#c15c17", "#d44a3a"],
       "format": "locale",
       "gauge": {
         "maxValue": 120,
@@ -1058,7 +1030,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_gas_price / 1000000000",
+          "expr": "geth-node_gas_price / 1000000000",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -1117,7 +1089,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_block_difficulty / 10000000000000",
+          "expr": "geth-node_block_difficulty / 10000000000000",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Difficulty",
@@ -1203,7 +1175,7 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "geth_block_nonce / 1000000000000000000",
+          "expr": "geth-node_block_nonce / 1000000000000000000",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Nonce",
@@ -1289,7 +1261,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_block_gas_used",
+          "expr": "geth-node_block_gas_used",
           "format": "time_series",
           "intervalFactor": 3,
           "legendFormat": "Token Transfers",
@@ -1378,7 +1350,7 @@
       "steppedLine": true,
       "targets": [
         {
-          "expr": "geth_contracts_created",
+          "expr": "geth-node_contracts_created",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "Contracts",
@@ -1431,11 +1403,7 @@
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
+      "colors": ["#299c46", "rgba(237, 129, 40, 0.89)", "#d44a3a"],
       "decimals": null,
       "format": "s",
       "gauge": {
@@ -1488,7 +1456,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "geth_load_time",
+          "expr": "geth-node_load_time",
           "format": "time_series",
           "instant": true,
           "intervalFactor": 1,
@@ -1548,7 +1516,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_pending_transactions",
+          "expr": "geth-node_pending_transactions",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1617,11 +1585,7 @@
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": true,
-      "colors": [
-        "#299c46",
-        "rgb(73, 204, 39)",
-        "#d44a3a"
-      ],
+      "colors": ["#299c46", "rgb(73, 204, 39)", "#d44a3a"],
       "decimals": 2,
       "format": "locale",
       "gauge": {
@@ -1675,7 +1639,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "sum(geth_block_value)",
+          "expr": "sum(geth-node_block_value)",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
@@ -1733,7 +1697,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "geth_block_transactions",
+          "expr": "geth-node_block_transactions",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Transactions",
@@ -1806,17 +1770,7 @@
       "2h",
       "1d"
     ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
+    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
   },
   "timezone": "",
   "title": "Geth Server",
